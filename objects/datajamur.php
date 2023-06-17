@@ -30,11 +30,14 @@ class DataJamur {
   }
 
   function read() {
-    $query = "SELECT * FROM " . $this->table;
+    $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
 
-    return $stmt;
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+
+    // return $stmt;
   }
 
   function readById($id) {
